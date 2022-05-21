@@ -1,9 +1,11 @@
+using Weather.BusinessLogic;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.ConfigureBusinessLogic();
 
 var app = builder.Build();
 
