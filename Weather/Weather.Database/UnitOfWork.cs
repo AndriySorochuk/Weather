@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Weather.Database
 {
-    internal class UnitOfWork: IDisposable
+    internal class UnitOfWork: IUnitOfWork,IDisposable
     {
         private bool disposed = false;
 

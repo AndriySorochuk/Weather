@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,9 +24,14 @@ namespace Weather.Database
             return dbSet.AsNoTracking().ToList();
         }
 
-        public IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
+        public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> predicate)
         {
-            return dbSet.AsNoTracking().Where(predicate).ToList();
+            return dbSet.Where(predicate).ToList();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await dbSet.Where(predicate).ToListAsync();
         }
 
         public TEntity FindById(int id)

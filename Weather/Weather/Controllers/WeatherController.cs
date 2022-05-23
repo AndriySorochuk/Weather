@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Weather.BusinessLogic.Services.Interfaces;
 
 namespace Weather.Controllers
 {
@@ -7,17 +8,20 @@ namespace Weather.Controllers
     public class WeatherController : ControllerBase
     {
 
-        private readonly ILogger<WeatherController> _logger;
+        private readonly ILogger<WeatherController> logger;
+        private readonly IWeatherService weatherService;
 
-        public WeatherController(ILogger<WeatherController> logger)
+        public WeatherController(ILogger<WeatherController> logger, IWeatherService weatherService)
         {
-            _logger = logger;
+            this.logger = logger;
+            this.weatherService = weatherService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetWeatherAsync()
+        public async Task<IActionResult> GetWeatherAsync([FromQuery]int locationId, [FromQuery] int days)
         {
-            return null;
+            var results = await weatherService.GetWeatherAsync(locationId, days);
+            return Ok(results);
         }
     }
 }

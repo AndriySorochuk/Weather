@@ -4,6 +4,6 @@ namespace Weather.BusinessLogic.Services.Interfaces
 {
     public interface IWeatherService
     {
-        Task<IEnumerable<WeatherModel>> GetWeatherAsync(string locationId);
+        Task<IEnumerable<WeatherModel>> GetWeatherAsync(int locationId, int days);
     }
 }

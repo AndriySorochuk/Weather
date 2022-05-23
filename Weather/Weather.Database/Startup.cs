@@ -9,6 +9,7 @@ namespace Weather.Database
         public static IServiceCollection ConfigureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<WeatherDBContext>(x=>x.UseSqlServer(configuration.GetConnectionString("WeatherDB")));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }
